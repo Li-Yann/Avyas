@@ -50,10 +50,10 @@
                     <td class="py-4 px-4">{{ $quizList->name }}</td>
                     <td class="py-4 px-4">
                         <a href="/show-mcq/{{$quizList->id}}/{{$quizList->name}}">
-                            <button class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded shadow-sm transition">Show</button>
+                            <button class="cursor-pointer inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded shadow-sm transition">Show</button>
                         </a>
                         <a href="/quiz-list/delete/{{$quizList->id}}" onclick="return confirm('Are you sure you want to delete this quiz?')">
-                            <button class="inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded shadow-sm transition">Delete</button>
+                            <button class="cursor-pointer inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-6 rounded shadow-sm transition">Delete</button>
                         </a>
                     </td>
                 </tr>

@@ -39,7 +39,7 @@
         </div>
 
         <button type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md">
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md cursor-pointer">
             Add Category
         </button>
     </form>
@@ -56,7 +56,7 @@
     <table class="w-full text-left border-collapse">
         <thead>
             <tr class="bg-gray-700">
-                <th class="py-2 px-4 border-b border-gray-600">#</th>
+                <th class="py-2 px-4 border-b border-gray-600">S.N.</th>
                 <th class="py-2 px-4 border-b border-gray-600">Category Name</th>
                 <th class="py-2 px-4 border-b border-gray-600">Created By</th>
                 <th class="py-2 px-4 border-b border-gray-600">Actions</th>
@@ -65,15 +65,15 @@
         <tbody>
             @foreach($getCategories as $getcategories)
             <tr class="hover:bg-gray-700">
-                <td class="py-2 px-4 border-b border-gray-600">{{$getcategories->id}}</td>
-                <td class="py-2 px-4 border-b border-gray-600">{{$getcategories->name}}</td>
-                <td class="py-2 px-4 border-b border-gray-600">{{$getcategories->creator}}</td>
-                <td class="py-2 px-4 border-b border-gray-600">
+                <td class="py-3 px-4 border-b border-gray-600">{{$getcategories->id}}</td>
+                <td class="py-3 px-4 border-b border-gray-600">{{$getcategories->name}}</td>
+                <td class="py-3 px-4 border-b border-gray-600">{{$getcategories->creator}}</td>
+                <td class="py-3 px-4 border-b border-gray-600">
                     <a href="show-quiz-list/{{$getcategories->id}}/{{$getcategories->name}}">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded ml-2">Show</button>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-2 py-1 rounded ml-2 cursor-pointer">Show</button>
                     </a>
                     <a href="categories/delete/{{$getcategories->id}}" onclick="return confirm('Are you sure you want to delete this quiz?')">
-                        <button class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded ml-2">Delete</button>
+                        <button class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded ml-2 cursor-pointer">Delete</button>
                     </a>
                 </td>
             </tr>

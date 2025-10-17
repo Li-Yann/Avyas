@@ -40,7 +40,7 @@
 </div>
 @enderror
 
-<div class="flex justify-center">
+<div class="flex flex-col items-center gap-10">
     <!-- Quiz Name -->
     <form action="/add-quiz" method="POST" class="flex items-end gap-4">
         @csrf
@@ -73,6 +73,42 @@
             </button>
         </div>
     </form>
+
+    <div class="overflow-x-auto w-full">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-4">Existing Quizzes</h1>
+
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
+            <thead class="bg-gray-100 text-sm text-gray-900 uppercase tracking-wider">
+                <tr>
+                    <th class="py-3 px-4 text-left border-b">S.No</th>
+                    <th class="py-3 px-4 text-left border-b">Name</th>
+                    <th class="py-3 px-4 text-left border-b">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200 text-gray-800">
+                @foreach($quizList as $index => $quiz)
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="py-4 px-4">{{ $index + 1 }}</td>
+                    <td class="py-4 px-4 font-medium">{{ $quiz->name }}</td>
+                    <td class="py-4 px-4">
+                        <a href="/show-mcq/{{ $quiz->id }}/{{ $quiz->name }}">
+                            <button class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition">
+                                Show
+                            </button>
+                        </a>
+                        <a href="/quiz-list/delete/{{ $quiz->id }}" onclick="return confirm('Are you sure you want to delete this quiz?')">
+                            <button class="cursor-pointer bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition">
+                                Delete
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 

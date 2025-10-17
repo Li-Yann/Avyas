@@ -14,6 +14,9 @@
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -29,7 +32,7 @@
         <nav :class="{'block': open, 'hidden': !open}"
             class="md:block w-full md:w-64 bg-gray-800 text-white shadow-lg md:shadow-none md:relative z-20">
             <div class="flex items-center justify-between md:justify-center h-16 px-4 border-b border-gray-700">
-                <span class="text-lg font-semibold">Admin Panel</span>
+                <span class="text-lg font-semibold">Quiz Master</span>
                 <button class="md:hidden text-white focus:outline-none" @click="open = false">
                     <svg class="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" fill="none">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -37,26 +40,55 @@
                     </svg>
                 </button>
             </div>
-            <ul class="p-4 space-y-2">
-                <li><a href="/dashboard" class="block px-3 py-2 rounded hover:bg-gray-700 transition">Dashboard</a></li>
-                <li><a href="/add-quiz" class="block px-3 py-2 rounded hover:bg-gray-700 transition">Quiz</a></li>
-                <li><a href="/admin-categories" class="block px-3 py-2 rounded hover:bg-gray-700 transition">Categories</a></li>
-                <li><a href="/admin-logout"
-                        class="block px-3 py-2 rounded text-red-400 hover:bg-gray-700 transition">Logout</a></li>
-            </ul>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="/dashboard"
+                    class="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-800 transition duration-150">
+                    <i class="fas fa-home text-blue-400"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/add-quiz"
+                    class="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-800 transition duration-150">
+                    <i class="fas fa-clipboard-list text-green-400"></i>
+                    <span>Quizzes</span>
+                </a>
+                <a href="/admin-categories"
+                    class="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-800 transition duration-150">
+                    <i class="fas fa-folder text-yellow-400"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="/admin-logout"
+                    class="flex items-center space-x-2 px-4 py-2 rounded-md text-red-400 hover:bg-gray-800 hover:text-red-300 transition duration-150">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
         </nav>
 
         <!-- Main content -->
         <div class="flex-1 flex flex-col">
             <!-- Header -->
-            <header class="h-16 bg-white shadow-md flex items-center justify-between md:justify-start px-4 md:px-6">
-                <button class="md:hidden text-gray-600 focus:outline-none" @click="open = !open">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 6h16M4 12h16M4 18h16" />
+            <header class="h-16 bg-white shadow-md flex items-center justify-between px-4 md:px-8">
+
+                <a href="/dashboard" class="flex items-center space-x-3">
+                    <img src="{{ asset('images/bulb.png') }}" alt="Logo" class="h-12 w-12">
+                    <div class="flex flex-col items-start leading-tight">
+                        <span class="text-xl font-bold text-yellow-500">AVYAS Quiz</span>
+                    </div>
+                </a>
+
+                <div class="ml-auto text-gray-800 font-semibold">
+                    Welcome, <span class="text-green-500 text-lg">{{ $name ?? 'Admin' }}</span>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button class="md:hidden text-gray-700 focus:outline-none ml-4" @click="open = !open">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <h1 class="text-lg font-semibold text-gray-800 ml-0 md:ml-4">Welcome {{ $name ?? '' }},</h1>
+
             </header>
 
             <!-- Page content goes here -->

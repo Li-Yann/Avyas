@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\Mcq;
+use App\Models\Record;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -39,9 +40,26 @@ class AdminController extends Controller
     function dashboard()
     {
         $admin = Session::get('adminSession');
+        $totalUsers = User::count();
+        $totalAdmin = Admin::count();
+        $totalCategories = Category::count();
+        $totalQuestions = Mcq::count();
+        $totalQuiz = Quiz::count();
+        $quizCompleted = Record::where('status', '2')->count();
+        $quizIncompleted = Record::where('status', '1')->count();
         if ($admin) {
             $user = User::orderBy('id', 'desc')->get();
-            return view('all-users', ["adName" => $admin->name, "user" => $user]);
+            return view('all-users', [
+                "adName" => $admin->name,
+                "user" => $user,
+                'totalUsers' => $totalUsers,
+                'totalAdmin' => $totalAdmin,
+                'totalCategories' => $totalCategories,
+                'totalQuestions' => $totalQuestions,
+                'totalQuiz' => $totalQuiz,
+                'quizCompleted' => $quizCompleted,
+                'quizIncompleted' => $quizIncompleted,
+            ]);
         } else {
             return redirect('admin-login');
         }
@@ -97,7 +115,7 @@ class AdminController extends Controller
     {
         $categories = Category::get();
         $admin = Session::get('adminSession');
-
+        $quizList = Quiz::get();
         if ($admin) {
             //Check if quizSession already exists
             if (Session::has('quizSession')) {
@@ -105,7 +123,7 @@ class AdminController extends Controller
                 return redirect('/add-mcq'); // Resume the unfinished quiz
             }
             //show fresh quiz form
-            return view('add-quiz', ["adName" => $admin->name, "categories" => $categories]);
+            return view('add-quiz', ["adName" => $admin->name, "categories" => $categories, 'quizList' => $quizList]);
         } else {
             return redirect('admin-login');
         }
