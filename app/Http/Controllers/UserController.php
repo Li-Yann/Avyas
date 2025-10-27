@@ -26,7 +26,7 @@ class UserController extends Controller
 
     function userShowQuizPage()
     {
-        $quizList = Quiz::withCount('Records', 'Mcq')->orderBy('records_count', 'desc')->take(7)->get();
+        $quizList = Quiz::withCount('Records', 'Mcq')->orderBy('records_count', 'desc')->take(9)->get();
         return view('user-show-quiz', ['quizList' => $quizList]);
     }
 
