@@ -1,22 +1,22 @@
-Avyas Quiz
+# Avyas Quiz
 
-Avyas Quiz is a web application built with Laravel for practicing multiple-choice questions (MCQs) related to Nepalese university entrance exams. Users can attempt mock tests, track performance, and improve their preparation.
+Avyas Quiz is a web application built with Laravel to help users practice multiple-choice questions (MCQs) related to Nepalese university entrance exams. Users can attempt mock tests, monitor their progress, and enhance their exam preparation.
 
-##Features
+## Features
 
--User registration and login
--Browse and attempt MCQs by subject
--Track quiz history and performance
--Admin panel to manage quizzes, questions, and users
+-   User registration and login system
+-   Browse and attempt MCQs by subject category
+-   Track quiz history and performance analytics
+-   Admin panel to manage quizzes, questions, and user accounts
 
-##Technology Stack
+## Technology Stack
 
--Backend: Laravel (PHP Framework)
--Frontend: Blade templates, HTML, CSS, JavaScript
--Database: MySQL
--Authentication: Laravel built-in auth
+-   Backend: Laravel (PHP Framework)
+-   Frontend: Blade templates, HTML, CSS, JavaScript
+-   Database: MySQL
+-   Authentication: Laravel built-in auth system
 
-Installation
+## Installation
 
 1.Clone the Repository
 
