@@ -11,37 +11,6 @@
 
 @section('content')
 
-<!-- Simple Structure -->
-<!-- <div class="bg-white p-6 mt-10 rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Existing Questions - {{ $quizName }}</h2>
-
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="py-3 px-6 text-left text-sm font-medium text-gray-600 uppercase tracking-wider border-b">MCQ ID</th>
-                    <th class="py-3 px-6 text-left text-sm font-medium text-gray-600 uppercase tracking-wider border-b">Question</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                @foreach($mcqs as $mcq)
-                <tr class="hover:bg-gray-50">
-                    <td class="py-4 px-6 text-gray-700">{{ $mcq->id }}</td>
-                    <td class="py-4 px-6 text-gray-700">{{ $mcq->question }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <div class="mt-6 text-center">
-        <a href="/add-mcq" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded shadow-sm transition">
-            ← Back to Quiz
-        </a>
-    </div>
-</div> -->
-
-<!-- Complete Structure -->
 <div class="bg-white p-6 mt-10 rounded-lg shadow-lg">
     <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Quiz Name:{{ $quizName }}</h2>
 
@@ -56,6 +25,7 @@
                     <th class="py-3 px-5 text-left border-b">Option C</th>
                     <th class="py-3 px-5 text-left border-b">Option D</th>
                     <th class="py-3 px-5 text-left border-b">Correct Answer</th>
+                    <th class="py-3 px-5 text-left border-b">Actions</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 text-gray-1000">
@@ -68,21 +38,34 @@
                     <td class="py-4 px-4">{{ $mcq->option_c }}</td>
                     <td class="py-4 px-4">{{ $mcq->option_d }}</td>
                     <td class="py-4 px-4 font-semibold text-green-600">{{ strtoupper($mcq->correct_ans) }}</td>
+                    <td class="py-4 px-4 space-x-2">
+
+                        <a href="{{ url('/edit-mcq/'.$mcq->id.'/'.$quizName) }}"
+                            class="bg-yellow-500 hover:bg-yellow-600 text-white font-medium text-sm w-24 h-9 m-1 flex items-center justify-center rounded transition">
+                            Edit
+                        </a>
+
+                        <form action="{{ url('/delete-mcq/'.$mcq->id.'/'.$quizName) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this MCQ?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="bg-red-600 hover:bg-red-700 text-white font-medium text-sm w-24 h-9 m-1 flex items-center justify-center rounded transition">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 
-    <div class="mt-6 text-center">
-        <a href="{{ url()->previous() }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded shadow-sm transition">
-            Back to Quiz Category
-        </a>
-    </div>
+    <a href="/admin-categories"
+        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded shadow-sm transition mt-4">
+        Back to Quiz Category
+    </a>
 </div>
 
-
 @endsection
-
 
 </html>

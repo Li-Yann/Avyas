@@ -29,6 +29,9 @@ Route::middleware('CheckAdminAuth')->group(function () {
     Route::get('/show-mcq/{id}/{quizName}', [AdminController::class, 'showMCQ']);
     Route::get('/show-quiz-list/{id}/{category}', [AdminController::class, 'showQuizList']);
     Route::get('/quiz-list/delete/{id}', [AdminController::class, 'deleteQuizList']);
+    Route::get('/edit-mcq/{id}/{quizName}', [AdminController::class, 'editMCQ']);
+    Route::put('/update-mcq/{id}/{quizName}', [AdminController::class, 'updateMCQ']);
+    Route::delete('/delete-mcq/{id}/{quizName}', [AdminController::class, 'deleteMCQ']);
 });
 
 

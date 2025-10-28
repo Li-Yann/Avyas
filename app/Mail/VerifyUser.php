@@ -35,7 +35,7 @@ class VerifyUser extends Mailable
 
     public function build()
     {
-        return $this->view('mail.user-forgot-password')->with([
+        return $this->view('mail.user-verify')->with([
             'link' => $this->link
         ]);
     }
